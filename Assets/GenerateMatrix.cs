@@ -6,8 +6,12 @@ public class GenerateMatrix : MonoBehaviour {
     public float matrix_spacing = 1f;
     public int matrix_width = 4;
     public int matrix_height = 6;
+	public static int MatrixHeight;
+	public static int MatrixWidth;
 	// Use this for initialization
 	void Awake () {
+		MatrixWidth = matrix_width;
+		MatrixHeight = matrix_height;
         for (int i=0; i < matrix_height;i++) {
             for (int j = 0; j < matrix_width; j++)
             {

@@ -7,11 +7,13 @@ public class WDotBehaviour : MonoBehaviour {
     SpriteRenderer sRend;
     public Color black;
     public Color white;
+	public Color red;
     public GameObject particle;
     public static GameObject first_position;
     public static GameObject p1, p2;
     public GameObject w_line;
     public static int last_position = 0;
+	public PhysicsMaterial2D big_bounce;
 	public int dot_index { get; set; }
 	public int row { get; set; }
 	public int column { get; set; }
@@ -20,12 +22,14 @@ public class WDotBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         sRend = gameObject.GetComponent<SpriteRenderer>();
+		
 	}
 	
 	// Update is called once per frame
 
     void OnMouseDown()
     {
+		CheckTriangle();
        // print("Row:" + row + " Column:" + column);
         if (last_position == 0)
         {
@@ -181,6 +185,50 @@ public class WDotBehaviour : MonoBehaviour {
             }
         }
     }
+
+	void CheckTriangle()
+	{
+
+		//troguao iz kvadranta 1
+		
+		//desna tacka
+		int right_dot_index = dot_index + 1;
+		string right_dot_name = "w_dot_" + right_dot_index;
+
+		//gornja tacka
+		int up_dot_index = dot_index - GenerateMatrix.MatrixWidth;
+		string up_dot_name = "w_dot_" + up_dot_index;
+
+		//ako postoje te tacke
+		if (GameObject.Find(right_dot_name) && GameObject.Find(up_dot_name))
+		{	
+			//setovanje stringova linija
+			string right_line_name = "w_line_" + dot_index + "_" + right_dot_index;
+			string up_line_name = "w_line_" + up_dot_index + "_" + dot_index;
+			string diagonal_line_name = "w_line_" + up_dot_index + "_"	+ right_dot_index;
+
+			//provera dal postoje sve tri linije
+			if (GameObject.Find(right_line_name) &&
+				GameObject.Find(up_line_name) &&
+				GameObject.Find (diagonal_line_name)
+				)
+			{
+				//stuff ako postoji trougao
+				//DO
+				print("Trougao napravljen izmedju:" + dot_index + "_" + right_dot_index + "_" + up_dot_index);
+				
+				//oboj tacke
+				GameObject.Find(right_dot_name).GetComponent<SpriteRenderer>().color = red;
+				GameObject.Find(up_dot_name).GetComponent<SpriteRenderer>().color = red;
+				sRend.color = red;
+
+				//promeni materijal na dijagonali
+				GameObject.Find(diagonal_line_name).GetComponent<BoxCollider2D>().sharedMaterial = big_bounce;
+			}
+		}
+
+
+	}
 
 
 }

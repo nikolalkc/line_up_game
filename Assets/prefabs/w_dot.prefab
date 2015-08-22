@@ -58,11 +58,10 @@ MonoBehaviour:
   w_dot: {fileID: 21300000, guid: 8ffb1679fb0d26b409cc0aaca5172fbf, type: 3}
   black: {r: 0, g: 0, b: 0, a: 1}
   white: {r: 1, g: 1, b: 1, a: 1}
+  red: {r: 1, g: 0, b: 0, a: 1}
   particle: {fileID: 197904, guid: 98afb3e51b150354a9c47bb57844d6ac, type: 2}
   w_line: {fileID: 150386, guid: e21eb17dc1e18bc42bb9a88304d63495, type: 2}
-  dot_index: 0
-  row: 0
-  column: 0
+  big_bounce: {fileID: 6200000, guid: 9d6ed6e9d17541b4bb078090cdb249a5, type: 2}
   is_neighbour: 0
 --- !u!212 &21272926
 SpriteRenderer:
