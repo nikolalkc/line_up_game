@@ -12,6 +12,7 @@ public class MainControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonDown (2)) {
+			//napravi lopticu
 			GameObject ball = Instantiate(real_ball) as GameObject;
 			Vector3 starting_ball_position = ball_position.transform.position;
 			ball.transform.position = starting_ball_position + new Vector3 (0.5f,0f,0f);

@@ -12,10 +12,11 @@ public class WDotBehaviour : MonoBehaviour {
     public static GameObject p1, p2;
     public GameObject w_line;
     public static int last_position = 0;
-    public int dot_index;
-    public int row;
-    public int column;
+	public int dot_index { get; set; }
+	public int row { get; set; }
+	public int column { get; set; }
     public bool is_neighbour = false;
+
 	// Use this for initialization
 	void Start () {
         sRend = gameObject.GetComponent<SpriteRenderer>();
@@ -126,15 +127,23 @@ public class WDotBehaviour : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(1))
         {
+			//pobeli sve tacke
             foreach (GameObject dot in GameObject.FindGameObjectsWithTag("dot"))
             {
                 SpriteRenderer spr = dot.GetComponent<SpriteRenderer>();
                 spr.sprite = dot.GetComponent<WDotBehaviour>().w_dot;
             }
+			//unisti sve linije
             foreach (GameObject line in GameObject.FindGameObjectsWithTag("line"))
             {
                 Destroy(line);
             }
+
+			//unisti sve loptice
+			foreach (GameObject ball in GameObject.FindGameObjectsWithTag("ball"))
+			{
+				Destroy(ball);
+			}
         }
     }
 
